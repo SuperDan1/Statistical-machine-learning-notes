@@ -1,5 +1,4 @@
-<center><font size=10 color='gray'>第五章 支持向量机</fontfont></center>
-[TOC]
+<center><font size=10 color='gray'>第四章 支持向量机</fontfont></center>
 
 # 线性可分支持向量机与硬间隔最大化
 > 支持向量机(support vector machines, SVM)是一种二类分类模型。基本模型是定义在特征空间上的间隔最大的线性分类器；还包括核技巧，这使它成为实质上的非线性分类器。

@@ -1,5 +1,4 @@
-<center><font size=10, color='gray'>第四章 朴素贝叶斯法</font></center>
-[TOC]
+<center><font size=10, color='gray'>第五章 朴素贝叶斯法</font></center>
 
 > 朴素贝叶斯(naive Bayes)法是基于**贝叶斯定理**与**特征条件独立假设**的分类方法。对于给定的训练数据集，首先基于特征条件独立假设学习输入\输出的联合概率分布;然后基于此模型，对给定的输入x，利用贝叶斯定理求出后验概率最大的输出y。
 
