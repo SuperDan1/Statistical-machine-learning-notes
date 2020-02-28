@@ -16,7 +16,7 @@
   * 输入：训练数据集$T = \{ ({x_1},{y_1}),({x_2},{y_2}),\cdots,({x_N},{y_N})\}$，其中${x_i} \in x \subseteq {\Re ^n}$为实例的特征向量，${y_i} \in {\cal{Y}} = \{ {c_1},{c_2}, \cdots ,{c_k}\}$为实例的类别，$i=1,2,\cdots,N$
   * 输出：实例$x$所属的类别$y$
   * 根据给定的距离度量，在训练集$T$中找出与x最近邻的k个点，涵盖这k个点的x的邻域记作$N_k(x)$
-  * 在$N_k(x)$中根据分类决策规则（如多数表决）决定$x$的类别$y$：$y = \mathop {\arg \max }\limits_{{c_j}} \sum\limits_{{x_i} \in {N_k}(x)} {I({y_i} = {c_j})}$，$i=1,2,\cdots,N;j=1,2,\cdots,K$
+  * 在$N_k(x)$中根据分类决策规则（如多数表决）决定$x$的类别$y$：$y = \mathop {\arg \max }\limits_{c_j} \sum\limits_{x_i \in N_k(x)} I(y_i = c_j)$，$i=1,2,\cdots,N;j=1,2,\cdots,K$
     其中$I$是指示函数，即当$y_i=c_j$时$I=1$，否则为0
 * k=1时称为最近邻算法
 
@@ -29,10 +29,10 @@
     k近邻法的模型对应特征空间的一个划分
 
 * 距离度量：特征空间中两个实例点相似程度的反映，假设特征空间x是n维实数向量空间${\Re ^n}$，${x_i},{x_j} \in \chi ,{x_i} = {(x_i^{(1)},x_i^{(2)}, \cdots ,x_i^{(n)})^T},{x_j} = {(x_j^{(1)},x_j^{(2)}, \cdots ,x_j^{(n)})^T}$
-  * Lp距离（Lp distance）：${L_p}({x_i},{x_j}) = \left( \sum\limits_{l = 1}^n {{\left| x_i^{(l)} - x_j^{(l)} \right|}^p}  \right)^\frac{1}{p}$，$p \ge 1$
-    * 当p=2时，称为欧式距离，即${L_2}({x_i},{x_j}) = {\left( {\sum\limits_{l = 1}^n {{{\left| {x_i^{(l)} - x_j^{(l)}} \right|}^2}} } \right)^{\frac{1}{2}}}$
-    * 当p=1时，称为曼哈顿（Manhattan distance）：${L_1}({x_i},{x_j}) = { {\sum\limits_{l = 1}^n {{{\left| {x_i^{(l)} - x_j^{(l)}} \right|}}} } }$
-    * 当$p = \infty$，它是各个坐标距离的最大值${L_\infty }({x_i},{x_j}) = \mathop {\max }\limits_i \left| {x_i^{(l)} - x_j^{(l)}} \right|$
+  * Lp距离（Lp distance）：${L_p}({x_i},{x_j}) = \left( \sum\limits_{l = 1}^n {\left| x_i^{(l)} - x_j^{(l)} \right|}^p  \right)^\frac{1}{p}$，$p \ge 1$
+    * 当p=2时，称为欧式距离，即${L_2}(x_i,x_j) = \left( {\sum\limits_{l = 1}^n {\left| x_i^{(l)} - x_j^{(l)} \right|}^2}\right)^{\frac{1}{2}}$
+    * 当p=1时，称为曼哈顿（Manhattan distance）：${L_1}(x_i,x_j) =  \sum\limits_{l = 1}^n {\left| x_i^{(l)} - x_j^{(l)} \right|}  $
+    * 当$p = \infty$，它是各个坐标距离的最大值${L_\infty }(x_i,x_j) = \mathop {\max }\limits_i \left| x_i^{(l)} - x_j^{(l)} \right|$
       ![Lp距离间的关系](pic\Lp距离间的关系.jpg)
       上图为二维空间中p取不同值时，与原点的$L_p$距离为1的点的图形
 * k值的选择
@@ -47,8 +47,8 @@
 
 * 分类决策规则：往往是多数表决，即由输入实例的k个邻近的训练实例中的多数类决定输入实例的类
   * 如果分类的损失函数为0-1损失函数，分类函数为$f:{\Re ^n} \to \{ {c_1},{c_2}, \cdots ,{c_k}\}$，那么误分类的概率为$P(Y \ne f(X)) = 1 - P(Y = f(X))$
-  * 对于给定的实例$x_i\in x$，其最近邻的k个训练实例点构成集合$N_k(x)$；如果涵盖$N_k(x)$的区域的类别是$c_j$，那么误分类率是$\frac{1}{k}\sum\limits_{{x_i} \in {N_k}(x)} {I({y_i} \ne {c_j})}  = 1 - \frac{1}{k}\sum\limits_{{x_i} \in {N_k}(x)} {I({y_i} = {c_j})}$
-  * 要使误分类率最小即经验风险最小，就要使$\sum\limits_{{x_i} \in {N_k}(x)} {I({y_i} = {c_j})}$最大
+  * 对于给定的实例$x_i\in x$，其最近邻的k个训练实例点构成集合$N_k(x)$；如果涵盖$N_k(x)$的区域的类别是$c_j$，那么误分类率是$\frac{1}{k}\sum\limits_{x_i \in {N_k}(x)} I({y_i} \ne {c_j})  = 1 - \frac{1}{k}\sum\limits_{x_i \in {N_k}(x)} I({y_i} = {c_j})$
+  * 要使误分类率最小即经验风险最小，就要使$\sum\limits_{x_i \in {N_k}(x)} I({y_i} = {c_j})$最大
   * 所以多数表决规则等价于经验风险最小化（损失函数最小化）
 
 ## k近邻法的实现：kd树

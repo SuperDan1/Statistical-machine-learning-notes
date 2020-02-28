@@ -40,7 +40,7 @@
 
 * 希望决策树的分支节点所包含的样本尽可能属于同一类别，即节点的“纯度”越来越高
 
-  * **信息熵**（information entropy）：度量样本集合纯度最常用的一种指标。假设当前集合D中第k类样本所占的**比例**为$p_k$，则信息熵公式为$Ent(D) =  - \sum\limits_{k = 1}^y {{p_k}{{\log }_2}{p_k}}$，**值越小**，**纯度越高**；
+  * **信息熵**（information entropy）：度量样本集合纯度最常用的一种指标。假设当前集合D中第k类样本所占的**比例**为$p_k$，则信息熵公式为$Ent(D) =  - \sum\limits_{k = 1}^y {p_k{\log }_2p_k}$，**值越小**，**纯度越高**；
 
   * 经验熵（conditional entropy）：设有随机变量$(X,Y)$，其联合概率分布为
     $$
@@ -48,7 +48,7 @@
     $$
     条件熵表示在已知随机变量$X$的条件下随机变量$Y$的不确定性，定义为$X$给定条件下$Y$的条件概率分布的熵对$X$的数学期望
     $$
-    H(Y|X) = \sum\limits_{i = 1}^n {{p_i}H(Y|X = {x_i})} 
+    H(Y|X) = \sum\limits_{i = 1}^n {p_iH(Y|X = x_i)}
     $$
     其中，${p_i} = P(X = {x_i}),i = 1,2, \cdots ,n$
 
@@ -67,18 +67,18 @@
 
         * 有$K$个类$C_k,k=1,2,\cdots,K$，$|C_K|$为属于类$C_k$的样本数量，$\sum\limits_{k = 1}^K {|{C_k}|}  = |D|$
 
-      * 假如离散属性$A$有$n$个可能取值$\left\{ {{a^1},{a^2}, \cdots ,{a^n}} \right\}$，若使用$A$来对$\bf{D}$进行划分，将$D$划分为$n$个子集$D_1,D_2,\cdots,D_n$，$|D_i|$为$D_i$的样本个数，$\sum\limits_{i= 1}^n {|{D_i}|}  = |D|$
+      * 假如离散属性$A$有$n$个可能取值$\left\{ {a^1,a^2, \cdots ,a^n} \right\}$，若使用$A$来对$\bf{D}$进行划分，将$D$划分为$n$个子集$D_1,D_2,\cdots,D_n$，$|D_i|$为$D_i$的样本个数，$\sum\limits_{i= 1}^n {|{D_i}|}  = |D|$
 
       * 子集$D_i$中属于类$C_k$的样本的集合为$D_{ik}$
 
       * 计算数据集$D$的经验熵$H(D)$
         $$
-        H(D) =  - \sum\limits_{k = 1}^K {\frac{{|{C_k}|}}{{|D|}}{{\log }_2}} \frac{{|{C_k}|}}{{|D|}}
+        H(D) =  - \sum\limits_{k = 1}^K {\frac{|C_k|}{|D|}{\log }_2} \frac{|C_k|}{|D|}
         $$
 
       * 计算特征$A$对数据集$D$的经验熵$H(D|A)$
         $$
-        H(D|A) = \sum\limits_{i = 1}^n {\frac{{|{D_i}|}}{{|D|}}H({D_i})}  =  - \sum\limits_{i = 1}^n {\frac{{|{D_i}|}}{{|D|}}\sum\limits_{k = 1}^K {\frac{{|{D_{ik}}|}}{{|{D_i}|}}{{\log }_2}} \frac{{|{D_{ik}}|}}{{|{D_i}|}}} 
+        H(D|A) = \sum\limits_{i = 1}^n \frac{|D_i|}{|D|}H(D_i)  =  - \sum\limits_{i = 1}^n {\frac{|D_i|}{|D|}\sum\limits_{k = 1}^K {\frac{|D_{ik}|}{|D_i|}{\log }_2} \frac{|D_{ik}|}{|D_i|}}
         $$
 
       * 计算信息增益
@@ -109,9 +109,9 @@
 
   * 基尼系数（Gini index）：**CART决策树**（Classification and Regression Tree，分类和回归任务都可以使用）使用基尼系数选择划分属性。
 
-    * 基尼值：$Ginin(D) = \sum\limits_{k = 1}^y {\sum\limits_{k' \ne k} {{p_k}{p_{k'}}} }  = 1 - \sum\limits_{k = 1}^y {p_k^2}$
+    * 基尼值：$Ginin(D) = \sum\limits_{k = 1}^y \sum\limits_{k' \ne k} p_kp_{k'}   = 1 - \sum\limits_{k = 1}^y {p_k^2}$
       直观来说，Gini(D)反映了从数据集D中**随机抽取两个样本**，其类别**标记不一致**的**概率**。Gini(D)**越小**，则数据集D的**纯度越高**；
-    * 属性a的基尼指数定义为$\sum\limits_{v = 1}^V {\frac{{\left| {{D^v}} \right|}}{{\left| D \right|}}Gini({D^v})}$; 在候选属性集合中，选择那个使得划分后基尼指数最小的属性作为最优划分属性，即 ${a^*} = \mathop {\arg \min }\limits_{a \in A} Gini\_index(D,a)$
+    * 属性a的基尼指数定义为$\sum\limits_{v = 1}^V {\frac{\left| {D^v} \right|}{\left| D \right|}Gini(D^v)}$; 在候选属性集合中，选择那个使得划分后基尼指数最小的属性作为最优划分属性，即 ${a^*} = \mathop {\arg \min }\limits_{a \in A} Gini\_index(D,a)$
 
 # 剪枝处理
 
@@ -132,11 +132,11 @@
 
   * 决策树学习的损失函数可以定义为
     $$
-    {C_\alpha }(T) = \sum\limits_{t = 1}^{|T|} {{N_t}{H_t}(T)}  + \alpha |T|
+    {C_\alpha }(T) = \sum\limits_{t = 1}^{|T|} {N_t}{H_t}(T)  + \alpha |T|
     $$
     其中经验熵为
     $$
-    {H_t}(T) =  - \sum\limits_k {\frac{{{N_{tk}}}}{{{N_t}}}\log } \frac{{{N_{tk}}}}{{{N_t}}}
+    {H_t}(T) =  - \sum\limits_k {\frac{N_{tk}}{N_t}\log } \frac{N_{tk}}{N_t}
     $$
     在损失函数中，将右端的第一项记为$C(T)$
     $$
@@ -180,14 +180,14 @@
     * 寻找最优切分变量$j$和最优切分点$s$
 
     $$
-    \mathop {\min }\limits_{j,s} [\mathop {\min }\limits_{{c_1}} \sum\limits_{{x_i} \in {R_1}(j,s)} {{{({y_i} - {c_1})}^2}}  + \mathop {\min }\limits_{{c_2}} \sum\limits_{{x_i} \in {R_2}(j,s)} {{{({y_i} - {c_2})}^2}} ]
+    \mathop {\min }\limits_{j,s} [\mathop {\min }\limits_{c_1} \sum\limits_{x_i \in {R_1}(j,s)} {(y_i - c_1)}^2  + \mathop {\min }\limits_{c_2} \sum\limits_{x_i \in {R_2}(j,s)} {(y_i - c_2)}^2 ]
     $$
 
     ​	对固定输入变量$j$可以找到最优切分点$s$
     $$
     \begin{array}{l}
-    {{\hat c}_1} = ave({y_i}|{x_i} \in {R_1}(j,s))\\
-    {{\hat c}_2} = ave({y_i}|{x_i} \in {R_2}(j,s))
+    {\hat c}_1 = ave({y_i}|{x_i} \in {R_1}(j,s))\\
+    {\hat c}_2 = ave({y_i}|{x_i} \in {R_2}(j,s))
     \end{array}
     $$
 
@@ -195,7 +195,7 @@
 
   * 对每个区域重复上述划分过程，直到满足停止条件为止，这样就生成了一棵回归树——最小二乘回归树（least square regression tree）
     $$
-    f(x) = \sum\limits_{m = 1}^M {{{\hat c}_m}I(x \in {R_m})}
+    f(x) = \sum\limits_{m = 1}^M {\hat c}_mI(x \in {R_m})
     $$
 
 * 分类树的生成
@@ -205,25 +205,27 @@
     * 分类问题中，假设有$K$个类，样本点属于第$k$类的概率为$p_k$，则概率分布的基尼指数定义为
 
     $$
-    Gini(p) = \sum\limits_{k = 1}^K {{p_k}(1 - {p_k})}  = 1 - \sum\limits_{k = 1}^K {p_k^2} 
+    Gini(p) = \sum\limits_{k = 1}^K p_k(1 - {p_k})  = 1 - \sum\limits_{k = 1}^K {p_k^2}
     $$
 
     * 对于给定的样本集合$D$，其基尼指数为
       $$
-      Gini(p) = 1 - \sum\limits_{k = 1}^K {{{(\frac{{|{C_k}|}}{{|D|}})}^2}} 
+      Gini(p) = 1 - \sum\limits_{k = 1}^K {(\frac{|C_k|}{|D|})}^2
       $$
 
     * 如果样本集合$D$根据特征$A$是否取某一可能值$a$被分割成$D_1$和$D_2$两部分，即${D_1} = \{ (x,y) \in D|A(x) = a\} ,{D_2} = D - {D_1}$，则在特征$A$的条件下，集合$D$的基尼指数定义为
       $$
-      Gini(D,A) = \frac{{|{D_1}|}}{{|D|}}Gini({D_1}) + \frac{{|{D_2}|}}{{|D|}}Gini({D_2})
+      Gini(D,A) = \frac{|D_1|}{|D|}Gini({D_1}) + \frac{|D_2|}{|D|}Gini({D_2})
       $$
-      ![基尼指数](C:\Users\SuperDan\Desktop\机器学习笔记\pic\基尼指数.jpg)
+      ![基尼指数](pic\基尼指数.jpg)
 
 # 连续与缺失值
 
 * 连续值处理：由于连续属性的可取值数目不再有限，需要**连续属性离散化**；C4.5决策树算法采用的就是**二分法**（bi-partition）对连续属性进行处理。
-  * 给定样本集${\bf{D}}$和连续属性a，假定a在${\bf{D}}$上出现了n个不同的取值，将这些值从小到大进行**排序**，记为$\left\{ {{a^1},{a^2}, \cdots ,{a^n}} \right\}$。基于划分点t将D**分为子集**${\bf{D}}_t^ -$和${\bf{D}}_t^ +$，其中${\bf{D}}_t^ -$包含那些在属性a上取值不大于t的样本，而${\bf{D}}_t^ +$则包含在属性a上取值大于t的样本。对于相邻的属性取值$a^i$与$a^{i+1}$来说，t在两者之间取任意值所产生的划分结果相同。所以对连续属性a（有n个值）可考察**n-1个元素**的**候选划分点集合**
-    ${T_a} = \{ \frac{{{a^i} + {a^{i + 1}}}}{2}|1 \le i \le n - 1\}$
+  * 给定样本集${\bf{D}}$和连续属性a，假定a在${\bf{D}}$上出现了n个不同的取值，将这些值从小到大进行**排序**，记为$\left\{ a^1,a^2, \cdots ,a^n \right\}$。基于划分点t将D**分为子集**${\bf{D}}_t^ -$和${\bf{D}}_t^ +$，其中${\bf{D}}_t^ -$包含那些在属性a上取值不大于t的样本，而${\bf{D}}_t^ +$则包含在属性a上取值大于t的样本。对于相邻的属性取值$a^i$与$a^{i+1}$来说，t在两者之间取任意值所产生的划分结果相同。所以对连续属性a（有n个值）可考察**n-1个元素**的**候选划分点集合**
+    $$
+    {T_a} = \{ \frac{a^i + a^{i + 1}}{2}|1 \le i \le n - 1\}
+    $$
     候选划分点为两个**相邻值**之间的**中位值**；之后比较候选划分点的信息增益，选择最佳划分点；
 * **缺失值处理**：现实任务中会遇到许多不完整样本，即样本的某些属性值缺失。如果简单地放弃不完整样本，仅适用无缺失值的样本来进行学习，显然是对数据信息极大的浪费；需要解决两个问题：
   * 如何在属性值缺失的情况下进行划分属性选择
@@ -231,14 +233,14 @@
     * 假定属性a上有V个可取值$\mathop {{D^v}}\limits^\sim$表示$\mathop D\limits^\sim$中在属性a上取值为$a^v$的样本子集，将$\mathop {{D_k}}\limits^\sim$表示$\mathop D\limits^\sim$中属于第k类的样本子集
       * 显然有$\mathop D\limits^\sim  =  \cup _{k = 1}^y\mathop {{D^k}}\limits^\sim  =  \cup _{v = 1}^V\mathop {{D^v}}\limits^\sim$
       * 假定我们为每个样本$\bf{x}$赋予一个权值$\omega_x$
-        * 无缺失值样本所占的比例：$\rho  = \frac{{\sum\limits_{x \in \mathop D\limits^\sim } {{\omega _x}} }}{{\sum\limits_{x \in D} {{\omega _x}} }}$
-        * 无缺失值样本中第k类所占的样本：$\mathop {{p_k}}\limits^\sim  = \frac{{\sum\nolimits_{x \in \mathop {{D_k}}\limits^\sim } {{\omega _x}} }}{{\sum\nolimits_{x \in \mathop D\limits^\sim } {{\omega _x}} }}$
-        * 无缺失值样本中在属性a上取值$a^v$的样本所占的比例：$\mathop {{\gamma _v}}\limits^\sim  = \frac{{\sum\nolimits_{x \in \mathop {{D^v}}\limits^\sim } {{\omega _x}} }}{{\sum\nolimits_{x \in \mathop D\limits^\sim } {{\omega _x}} }}$
-      * 将上述的信息增益计算式推广为：$Gain(D,a) = \rho *(Ent(\mathop D\limits^\sim) - \sum\limits_{v = 1}^V {\mathop {{\gamma _v}}\limits^\sim Ent(\mathop {{D^v}}\limits^\sim )} )$
-        其中，$Ent(\mathop D\limits^\sim ) =  - \sum\limits_{k = 1}^y {\mathop {{p_k}}\limits^\sim {{\log }_2}} \mathop {{p_k}}\limits^\sim$
+        * 无缺失值样本所占的比例：$\rho  = \frac{\sum\limits_{x \in \mathop D\limits^\sim } {\omega _x} }{\sum\limits_{x \in D} {\omega _x} }$
+        * 无缺失值样本中第k类所占的样本：$\mathop {p_k}\limits^\sim  = \frac{\sum\nolimits_{x \in \mathop {D_k}\limits^\sim } {\omega _x} }{\sum\nolimits_{x \in \mathop D\limits^\sim } {\omega _x} }$
+        * 无缺失值样本中在属性a上取值$a^v$的样本所占的比例：$\mathop {\gamma _v}\limits^\sim  = \frac{\sum\nolimits_{x \in \mathop {D^v}\limits^\sim } \omega _x }{\sum\nolimits_{x \in \mathop D\limits^\sim } {\omega _x} }$
+      * 将上述的信息增益计算式推广为：$Gain(D,a) = \rho *(Ent(\mathop D\limits^\sim) - \sum\limits_{v = 1}^V {\mathop {\gamma _v}\limits^\sim Ent(\mathop {D^v}\limits^\sim )} )$
+        其中，$Ent(\mathop D\limits^\sim ) =  - \sum\limits_{k = 1}^y {\mathop {p_k}\limits^\sim {\log }_2} \mathop {p_k}\limits^\sim$
   * 给定划分属性，若样本在该属性上的值缺失，如何对样本进行划分
     * 若样本$\bf{x}$在划分属性a上取值已知，则将其划入与其取值对应的子结点，且样本权值在子结点中保持为$\omega_x$
-    * 若样本$\bf{x}$在划分属性a上的取值未知，则将其划入所有子结点，且样本权值在与属性值$a^v$对应的子结点中调整为$\mathop {{\gamma _v} \cdot }\limits^\sim {\omega _x}$；直观地看，这就是让同一个样本以不同的概率划入到不同的子结点中去 
+    * 若样本$\bf{x}$在划分属性a上的取值未知，则将其划入所有子结点，且样本权值在与属性值$a^v$对应的子结点中调整为$\mathop {\gamma _v \cdot }\limits^\sim {\omega _x}$；直观地看，这就是让同一个样本以不同的概率划入到不同的子结点中去 
 
 
 
