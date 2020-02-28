@@ -1,4 +1,3 @@
-<center><font size=10 color='gray'>第一章 统计学习方法概论</fontfont></center>
 # 统计学习
 
 - 统计学习（statistical learning）定义：关于计算机**基于数据构建概率统计模型**并运用模型对数据进行预测与分析的一门学科

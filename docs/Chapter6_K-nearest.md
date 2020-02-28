@@ -29,7 +29,7 @@
     k近邻法的模型对应特征空间的一个划分
 
 * 距离度量：特征空间中两个实例点相似程度的反映，假设特征空间x是n维实数向量空间${\Re ^n}$，${x_i},{x_j} \in \chi ,{x_i} = {(x_i^{(1)},x_i^{(2)}, \cdots ,x_i^{(n)})^T},{x_j} = {(x_j^{(1)},x_j^{(2)}, \cdots ,x_j^{(n)})^T}$
-  * Lp距离（Lp distance）：${L_p}({x_i},{x_j}) = {\left( {\sum\limits_{l = 1}^n {{{\left| {x_i^{(l)} - x_j^{(l)}} \right|}^p}} } \right)^{\frac{1}{p}}}$，$p \ge 1$
+  * Lp距离（Lp distance）：${L_p}({x_i},{x_j}) = \left( \sum\limits_{l = 1}^n {{\left| x_i^{(l)} - x_j^{(l)} \right|}^p}  \right)^\frac{1}{p}$，$p \ge 1$
     * 当p=2时，称为欧式距离，即${L_2}({x_i},{x_j}) = {\left( {\sum\limits_{l = 1}^n {{{\left| {x_i^{(l)} - x_j^{(l)}} \right|}^2}} } \right)^{\frac{1}{2}}}$
     * 当p=1时，称为曼哈顿（Manhattan distance）：${L_1}({x_i},{x_j}) = { {\sum\limits_{l = 1}^n {{{\left| {x_i^{(l)} - x_j^{(l)}} \right|}}} } }$
     * 当$p = \infty$，它是各个坐标距离的最大值${L_\infty }({x_i},{x_j}) = \mathop {\max }\limits_i \left| {x_i^{(l)} - x_j^{(l)}} \right|$
