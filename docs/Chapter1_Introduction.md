@@ -53,7 +53,7 @@
   * 给定训练数据集$T = \{ ({x_1},{y_1}),({x_2},{y_2}), \cdots ,({x_N},{y_N})\} $
     * $(x_i,y_i),i=1,2,\cdots,N$称为样本或样本点；监督学习中假设数据是依联合概率分布$P(\bf{Y} | \bf{X})$独立同分布产生
     * ${x_i} \in x \subseteq {\Re ^n}$是输入的观测值，称为输入或实例
-    * $y_i\in \cal Y$是输出的观测值，称为输出
+    * $y_i\in \mathcal Y$是输出的观测值，称为输出
   * 学习过程：学习系统利用给定的训练数据集，通过学习（训练）得到一个模型，表示为条件概率分布$\hat P(Y|X)$ 或决策函数$Y = \hat f(X)$——描述输入与输出随机变量之间的映射关系
   * 预测过程：预测系统对于给定的测试样本集中的输入$x_{N+1}$，由模型${y_{N + 1} } = \mathop {\arg \max }\limits_{y_{N + 1}} \hat P({y_{N + 1}}|{x_{N + 1}})$或${y_{N + 1}} = \hat f({x_{N + 1}})$给出相应的输出$y_{N+1}$
 
@@ -70,25 +70,25 @@
   * 如：假设决策函数是输入变量的线性函数，那么模型的假设空间就是所有这些线性函数构成的函数集合
   * 假设空间中的模型一般有无穷多个
 
-* 假设空间用$\cal F$表示
+* 假设空间用$\mathcal  F$表示
 
   * 定义为决策函数的集合
     $$
-    {\cal F} = \{ f|Y = f(X)\}
+    {\mathcal  F} = \{ f|Y = f(X)\}
     $$
-    其中，$X$和$Y$是定义在输入空间$\cal X$和$\cal Y$上的变量，此时$\cal F$通常是由一个参数向量决定的函数簇
+    其中，$X$和$Y$是定义在输入空间$\mathcal  X$和$\mathcal Y$上的变量，此时$\mathcal F$通常是由一个参数向量决定的函数簇
     $$
-    {\cal F} = \{ f|Y = {f_\theta }(X),\theta  \in {\Re ^n}\}
+    {\mathcal  F} = \{ f|Y = {f_\theta }(X),\theta  \in {\Re ^n}\}
     $$
     参数向量$\theta$取值属于$n$维欧式空间$\Re^n$，称为**参数空间**（parameter space）
 
   * 定义为条件概率的集合
     $$
-    {\cal F} = \{ P|P(Y|X)\}
+    {\mathcal F} = \{ P|P(Y|X)\}
     $$
-    其中，$X$和$Y$是定义在输入空间$\cal X$和$\cal Y$上的变量，此时$\cal F$通常是由一个参数向量决定的条件概率分布簇
+    其中，$X$和$Y$是定义在输入空间$\mathcal X$和$\mathcal Y$上的变量，此时$\mathcal F$通常是由一个参数向量决定的条件概率分布簇
     $$
-    {\cal F} = \{ P|{P_\theta }(Y|X),\theta  \in {\Re ^n}\}
+    {\mathcal F} = \{ P|{P_\theta }(Y|X),\theta  \in {\Re ^n}\}
     $$
     参数向量$\theta$取值属于$n$维欧式空间$\Re^n$，称为参数空间（parameter space）
 
@@ -135,7 +135,7 @@
     * 由于模型的输入、输出$(X,Y)$是随机变量，遵循联合分布$P(X,Y)$，所以损失函数的期望——风险函数（期望损失函数）是
   
     $$
-    {R_{\exp }}(f) = {E_p}[L(Y,f(X))] = \int\limits_{\cal X  \times \cal Y } {L(Y,f(X))P(x,y)dxdy}
+    {R_{\exp }}(f) = {E_p}[L(Y,f(X))] = \int\limits_{\mathcal X  \times \mathcal Y } {L(Y,f(X))P(x,y)dxdy}
     $$
   
     * 学习的目标是选择**期望风险最小**的模型，由于联合分布$P(X,Y)$是未知的，所以无法直接计算风险函数
@@ -158,9 +158,9 @@
     * 经验风险最小的模型就是最优模型，按照经验风险最小化求最优模型就是求解最优化模型
 
     $$
-    \mathop {\min }\limits_{f \in \cal F} \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}
+    \mathop {\min }\limits_{f \in \mathcal F} \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i}))}
     $$
-  ​       其中$\cal F$是假设空间
+  ​       其中$\mathcal F$是假设空间
 
     * 例如：极大似然估计（maximum likelihood estimation）就属于经验风险最小化——当模型是**条件概率分布**，损失函数是**对数损失函数**时，经验风险最小化就等价于极大似然估计
 
@@ -168,9 +168,9 @@
 
     * 在假设空间、损失函数以及训练数据集确定的情况下，结构风险等于经验风险加上表示模型复杂度的正则化项或罚项（penalty term）
       $$
-      \mathop {\min }\limits_{f \in \cal F}{R_{srm}}(f) = \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i})) + \lambda J(f)}
+      \mathop {\min }\limits_{f \in \mathcal F}{R_{srm}}(f) = \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i})) + \lambda J(f)}
       $$
-      其中，$J(f)$为模型的复杂度，是定义在假设空间$\cal F$上的泛函；$\lambda \ge 0$是系数，用以权衡经验风险和模型复杂度
+      其中，$J(f)$为模型的复杂度，是定义在假设空间$\mathcal F$上的泛函；$\lambda \ge 0$是系数，用以权衡经验风险和模型复杂度
 
     * 例如：贝叶斯估计中的最大后验概率估计（maximum posterior probability estimation，MAP）就属于结构风险最小化——当模型是条件概率分布、损失函数是对数损失函数、模型复杂度由模型的先验概率表示时，结构风险最小化就等价于最大后验概率估计
 
@@ -224,7 +224,7 @@
 
 * 正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大
   $$
-  \mathop {\min }\limits_{f \in \cal{F}} \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i})) + \lambda J(f)} 
+  \mathop {\min }\limits_{f \in \mathcal{F}} \frac{1}{N}\sum\limits_{i = 1}^N {L({y_i},f({x_i})) + \lambda J(f)} 
   $$
   其中，第1项是经验风险，第2项是正则化项，$\lambda \ge 0$为调整两者之间关系的系数
 
@@ -264,7 +264,7 @@
 
 * 泛化误差：如果学到的模型是$\hat {f}$，那么用这个模型对未知数据预测的误差即为泛化误差
   $$
-  {R_{\exp }}(f) = {R_p}[L(Y,\hat f(X))] = \int\limits_{\chi  \times \cal{Y}} {L(y,\hat f(x))P(x,y)dxdy} 
+  {R_{\exp }}(f) = {R_p}[L(Y,\hat f(X))] = \int\limits_{\chi  \times \mathcal{Y}} {L(y,\hat f(x))P(x,y)dxdy} 
   $$
   泛化误差反映了学习方法的泛化能力，如果一种方法学习的模型比另一种方法学习的模型具有更小的泛化误差，那么这种方法就更有效；事实上，泛化误差就是所学习到的模型的期望风险
 

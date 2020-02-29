@@ -1,10 +1,9 @@
-<center><font size=10 color='gray'>第二章 感知机</fontfont></center>
 # 感知机模型
 
 * 感知机（Perceptron）是**二类分类**的线性分类模型，其输入为实例的特征向量，输出为实例的类别，取$\{+1,-1\}$二值
-    * 假设输入空间（**特征空间**）是$\bf{x}\subseteq {\Re ^n}$，输出空间是${\cal Y}=\{  + 1, - 1\}$
+    * 假设输入空间（**特征空间**）是$\bf{x}\subseteq {\Re ^n}$，输出空间是${\mathcal Y}=\{  + 1, - 1\}$
     
-    * 输入$x\in \bf{x}$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y\in \cal{Y}$表示实例的类别
+    * 输入$x\in \bf{x}$表示实例的特征向量，对应于输入空间（特征空间）的点；输出$y\in \mathcal{Y}$表示实例的类别
     
     * 由输入空间到输出空间的函数为
         $$
@@ -27,8 +26,9 @@
     * 超平面S称为**分离超平面**（separating hyperplane）
       
         ![感知机模型](pic/感知机模型.jpg)
+
 # 感知机学习策略
-* 数据集的线性可分性：给定一个数据集$T = \{ (x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$，其中$x_i\in {\bf{x}} ={\Re ^n},y_i\in  {\cal Y}=\{+1,-1\},i=1,2,\cdots,N$，如果存在某个超平面S：$\omega  \cdot x + b=0$能够将数据集的正实例点和负实例点**完全正确**地划分到**超平面**的**两侧**，则称数据集T为**线性可分数据集**（linearly separable data set）
+* 数据集的线性可分性：给定一个数据集$T = \{ (x_1,y_1),(x_2,y_2),\cdots,(x_N,y_N)\}$，其中$x_i\in {\bf{x}} ={\Re ^n},y_i\in  {\mathcal Y}=\{+1,-1\},i=1,2,\cdots,N$，如果存在某个超平面S：$\omega  \cdot x + b=0$能够将数据集的正实例点和负实例点**完全正确**地划分到**超平面**的**两侧**，则称数据集T为**线性可分数据集**（linearly separable data set）
     * 对所有$y_i=+1$的实例$x_i$，有$\omega  \cdot x + b>0$
     * 对所有$y_i=-1$的实例$x_i$，有$\omega  \cdot x + b<0$
 
@@ -56,7 +56,7 @@
 
 # 感知机学习算法
 ## 感知机学习算法的原始形式
-* 感知机学习算法是对以下最优化问题的算法：给定一个数据集$T=\{ ({x_1},{y_1}),({x_2},{y_2}),\cdots,({x_N},{y_N})\}$，其中$x_i\in \bf{x} ={\Re ^n},y_i\in  {\cal Y}=\{+1,-1\},i=1,2,\cdots,N$，求参数$\omega,b$，使其为以下损失函数极小化问题的解
+* 感知机学习算法是对以下最优化问题的算法：给定一个数据集$T=\{ ({x_1},{y_1}),({x_2},{y_2}),\cdots,({x_N},{y_N})\}$，其中$x_i\in \bf{x} ={\Re ^n},y_i\in  {\mathcal Y}=\{+1,-1\},i=1,2,\cdots,N$，求参数$\omega,b$，使其为以下损失函数极小化问题的解
     $$
     \mathop {\min }\limits_{\omega ,b} L(\omega ,b) =  - \sum\limits_{x_i \in M} {y_i(\omega  \cdot {x_i} + b)}
     $$

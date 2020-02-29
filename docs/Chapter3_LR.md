@@ -1,5 +1,3 @@
-<center><font size=10 color='gray'>第三章 逻辑斯蒂回归与最大熵模型</fontfont></center>
-
 # 逻辑斯蒂回归模型
 
 - 逻辑斯蒂分布：设$\bf{X}$是连续随机变量，$\bf{X}$具有下列分布函数和密度函数：
@@ -35,7 +33,7 @@
     \begin{array}{l}
     P(Y = 1|x) &= \frac{1}{1 + e^{- (\omega  \cdot x + b)}}\\
   P(Y = 0|x) &= 1 - P(Y = 1|x)\\
-    &=\frac{e^{- (\omega  \cdot x + b)}} {1 + e^{- (\omega  \cdot x + b)}}
+               &=\frac{e^{- (\omega  \cdot x + b)}} {1 + e^{- (\omega  \cdot x + b)}}
     \end{array}
     $$
   

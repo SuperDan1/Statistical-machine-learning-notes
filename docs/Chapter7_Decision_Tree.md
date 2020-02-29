@@ -1,5 +1,3 @@
-<center><font size=10 color='gray'>第七章 决策树</fontfont></center>
-
 # 决策树模型与学习
 
 ## 决策树模型
